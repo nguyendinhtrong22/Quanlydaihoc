@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-
+import schoolRouter from "./routes/school.routes.js";
+import districtRouter from "./routes/district.routes.js";
 const app = express();
 
 const allowedOrigins = [
@@ -30,4 +31,7 @@ app.get("/", (req, res) => {
     message: "WebGIS backend is running"
   });
 });
+//Routes
+app.use("/api/schools", schoolRouter);
+app.use("/api/districts", districtRouter);
 export default app;

@@ -1,14 +1,17 @@
+import MapView from "./components/MapView";
+import Sidebar from "./components/Sidebar";
 import "./App.css";
-import { StrictMode } from "react";
 function App() {
   return (
-    <StrictMode>
-      <div className="container">
-        <div className="header">WebGIS - Quản lý trường đại học</div>
+    <div className="app">
+      <header className="header">WebGIS - Quản lý trường đại học Hà Nội</header>
 
-        <div className="body"></div>
+      <div className="container">
+        <Sidebar />
+        <MapView />
       </div>
-    </StrictMode>
+    </div>
   );
 }
+
 export default App;

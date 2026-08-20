@@ -11,30 +11,36 @@ body,
     height: 100%;
 }
 
-.container {
+.app {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100vh;
 }
 
 .header {
     height: 60px;
-    min-height: 60px;
-    max-height: 60px;
-    background: #2c7be5;
+    /* fix cứng cho dễ control */
+    background: #1976d2;
     color: white;
-    font-size: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-size: 24px;
 }
 
-.body {
-    display: flex;
+.container {
     flex: 1;
+    display: flex;
 }
 
-.leaflet-control-attribution {
-    display: none !important;
+/* sidebar */
+.sidebar {
+    width: 300px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+/* map */
+.container>div:last-child {
+    flex: 1;
 }
