@@ -4,8 +4,8 @@ import schoolIconImg from "../../assets/icons/school.png";
 
 const highlightIcon = L.icon({
   iconUrl: schoolIconImg,
-  iconSize: [30, 30],
-  iconAnchor: [15, 35],
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
 });
 
 export default function ResultLayer({ data }) {

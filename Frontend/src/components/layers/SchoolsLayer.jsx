@@ -21,7 +21,7 @@ function SchoolsLayer() {
     });
   }, []);
 
-  // NORMALIZE XỊN (fix toàn bộ tiếng Việt)
+  // fix toàn bộ tiếng Việt
   const normalize = (str) =>
     str
       ?.toLowerCase()
@@ -38,9 +38,9 @@ function SchoolsLayer() {
     return normalize(text).includes(normalize(keyword));
   };
 
-  //  ICON (highlight nếu match search)
+  // ICON (highlight nếu match search)
   const getIcon = (isMatch) => {
-    const size = zoomLevel >= 12 ? 38 : 32;
+    const size = zoomLevel >= 15 ? 42 : 35;
 
     return L.icon({
       iconUrl: isMatch ? highlightIconImg : schoolIconImg,
@@ -114,7 +114,7 @@ function SchoolsLayer() {
       }
     });
 
-    if (zoomLevel >= 12) {
+    if (zoomLevel >= 15) {
       layer.bindTooltip(props.name || "", {
         permanent: true,
         direction: "right",
