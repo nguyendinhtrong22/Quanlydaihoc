@@ -46,3 +46,49 @@ export const getSchoolsGeoJSON = async () => {
   const result = await pool.query(query);
   return result.rows[0].geojson;
 };
+//Nearest route
+export const getNearestSchool = async (lon, lat) => {
+  const query = `
+    SELECT 
+      id,
+      name,
+      address,
+      lat,
+      lon,
+      ST_Distance(
+        geom::geography,
+        ST_SetSRID(ST_MakePoint($1, $2), 4326)::geography
+      ) AS distance_m
+    FROM schools
+    ORDER BY geom <-> ST_SetSRID(ST_MakePoint($1, $2), 4326)
+    LIMIT 1
+  `;
+
+  const result = await pool.query(query, [lon, lat]);
+  return result.rows[0];
+};
+//Schools in radius
+export const getSchoolsInRadius = async (lon, lat, radius) => {
+  const query = `
+    SELECT
+      id,
+      name,
+      address,
+      lat,
+      lon,
+      ST_Distance(
+        geom::geography,
+        ST_SetSRID(ST_MakePoint($1, $2), 4326)::geography
+      ) AS distance_m
+    FROM schools
+    WHERE ST_DWithin(
+      geom::geography,
+      ST_SetSRID(ST_MakePoint($1, $2), 4326)::geography,
+      $3
+    )
+    ORDER BY distance_m ASC
+  `;
+
+  const result = await pool.query(query, [lon, lat, radius]);
+  return result.rows;
+};
